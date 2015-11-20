@@ -1,0 +1,23 @@
+{% extends "hfcd/base.html" %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block breadcrumbs %}
+    Home
+{% endblock breadcrumbs %}
+
+
+{% block content %}
+
+<h1>{{ page_title }}</h1>
+
+<a href="{% url 'example_view' %}">Example view.</a>
+<br />
+
+<a href="{% url 'raise_an_exception' %}">Raise an exception.</a>
+<br />
+
+<a href="{% url 'example_multipurpose' %}">Example of <tt>multipurpose()</tt>.</a>
+<br />
+
+{% endblock content %}

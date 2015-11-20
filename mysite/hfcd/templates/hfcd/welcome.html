@@ -13,8 +13,14 @@
 
 <p>
     There doesn't seem to be anything here yet.
-    
-    <a href="{% url 'example_view' %}">Example view.</a>
 </p>
+
+
+{% if user.is_superuser %}
+    <p>
+        <a href="{% url 'debugging_links' %}">Debugging links.</a>
+    </p>
+{% endif %}
+
 
 {% endblock content %}
