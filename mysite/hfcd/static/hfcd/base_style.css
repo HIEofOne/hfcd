@@ -1,0 +1,302 @@
+/* File: base_style.css
+ * 
+ * The contents of this file were copied from PTS and then modified.
+ * 
+ * The copying took place on 2015-08-27.
+ *
+ */
+
+
+body, div {
+    margin: 0;
+    padding: 0;
+    font-family: "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+    /* font-family: "Times New Roman", "Times", serif; */
+    font-size: 14px;
+}
+
+a img {
+    border: none;
+}
+
+div.clearfix {
+    clear: both;
+    height: 1px;
+    overflow: hidden;
+}
+
+p {
+    margin: 0;
+    padding: 0px 0px 20px 0px;
+}
+
+pre.monospace_pre {
+    font-family: monospace;
+    line-height: 1.1em;
+}
+
+div.big_button {
+    margin-bottom: 7px;
+    border: 1px solid black;
+    padding: 7px;
+    float: left;
+    background-color: #CCCCCC;
+    color: black;
+    font-size: 1.2em;
+    text-decoration: none;
+}
+
+div.big_button:hover {
+    background-color: #DDDDFF;
+}
+
+div.bigger_button {
+    margin-bottom: 7px;
+    border: 1px solid black;
+    padding: 30px;
+    float: left;
+    background-color: #CCCCCC;
+    color: black;
+    font-size: 1.7em;
+    text-decoration: none;
+}
+
+div.bigger_button:hover {
+    background-color: #DDDDFF;
+}
+
+a.big_button_link {
+    text-decoration: none;
+}
+
+div.big_button_container {
+    padding-left: 15px;
+}
+
+div.list_item {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+div#header {
+    background-color: #CCCCCC;
+}
+
+div#header_top {
+    padding: 10px;
+}
+
+div#header_left {
+    float: left;
+    font-size: 22px;
+}
+
+div#header_left a {
+    text-decoration: none;
+}
+
+div#header_left a:hover {
+    text-decoration: underline;
+}
+
+div#header_right {
+    float: right;
+    font-size: 14px;
+    padding: 4px;
+}
+
+div#header_bottom {
+    background-color: #999999;
+    padding: 5px 10px 5px 10px;
+}
+
+div#header_bottom a {
+    text-decoration: none;
+}
+
+div#header_bottom a:hover {
+    text-decoration: underline;
+}
+
+div#header_breadcrumbs {
+    float: left;
+}
+
+div#header_navigation {
+    float: right;
+}
+
+div#content {
+    padding: 15px;
+}
+
+div#footer_container {
+    text-align: center;
+    clear: both;
+    padding-top: 10px;
+}
+
+div#footer_image {
+    margin: 0px auto;
+}
+
+span.red {
+    color: #FF0000;
+    font-weight: bold;
+}
+
+div.warning_no_undo {
+    margin: 0px 10px 20px 10px;
+    font-size: 1.3em;
+    padding: 15px;
+    border: 3px solid #DD0000;
+    background-color: #FFAAAA;
+}
+
+span.warning_no_undo {
+    font-weight: bold;
+}
+
+
+/* Headers */
+
+h1 {
+    font-size: 2em;
+    font-weight: normal;
+    margin: 10px 0px;
+    padding: 0px;
+}
+
+h2 {
+    font-size: 1.5em;
+    font-weight: normal;
+    margin: 10px 0px;
+    padding: 0px;
+}
+
+
+/* Forms */
+
+div.non_field_errors {
+    background-color: #FF7777;
+    border: 2px solid #FF0000;
+    padding: 5px;
+}
+
+div.one_form_field {
+    margin-bottom: 15px;
+}
+
+div.error_form_field {
+    border: 1px solid black;
+    padding: 5px;
+    background-color: #FFEF00;
+}
+
+div.form_error_list {
+    margin-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #FF7777;
+    border: 2px solid #FF0000;
+}
+
+ul.errorlist {
+    margin: 0;
+}
+
+input.monospace {
+    font-family: monospace;
+}
+
+
+/* Aligned Forms */
+
+div.form_label {
+    float: left;
+}
+
+div.form_input {
+    float: left;
+    margin-right: 15px;
+}
+
+div.form_help_text {
+    clear: none;
+}
+
+
+/* AJAX */
+
+div.ajax_error {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 99999;
+    top: 0px;
+    left: 0px;
+    background-color: #FFFFFF;
+}
+
+
+/* Pagination */
+
+div.pagination {
+    margin: 15px;
+}
+
+div.pagination_cell {
+    border: 1px solid black;
+    padding: 7px;
+    float: left;
+    margin-right: -1px;
+}
+
+
+/* Tree List Graphs */
+
+div.tree_depth_0 {
+    margin-left: 0px;
+    margin-top: 10px;
+}
+
+div.tree_depth_1 {
+    margin-left: 30px;
+}
+
+div.tree_depth_2 {
+    margin-left: 60px;
+}
+
+div.tree_depth_3 {
+    margin-left: 90px;
+}
+
+div.tree_depth_4 {
+    margin-left: 120px;
+}
+
+div.tree_depth_5 {
+    margin-left: 150px;
+}
+
+
+/* Toposorted Lists */
+
+div.topo_list_one_sub_list {
+    margin: 5px;
+    border: 1px solid black;
+    padding: 10px 10px 5px 10px;
+}
+
+div.topo_list_sub_list_header {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+div.topo_list_one_task {
+    margin: 5px;
+    border: 1px solid #888888;
+    padding: 5px;
+}

@@ -1,6 +1,6 @@
-{% extends "tasker/base.html" %}
+{% extends "hfcd/base.html" %}
 
-{% block title %}Tasker: Welcome{% endblock %}
+{% block title %}HIE of One Demo: Welcome{% endblock %}
 
 {% block breadcrumbs %}
     Home
@@ -9,22 +9,12 @@
 
 {% block content %}
 
-<h1>Welcome to Tasker, a Productivity App</h1>
+<h1>Welcome to the HIE of One Demo for Future Commerce 2015</h1>
 
 <p>
-    Here are some links:
-    <br />
+    There doesn't seem to be anything here yet.
     
-    <a href="{% url 'full_topo_list' %}">Full Toposorted List</a>
-    <br />
-    <a href="{% url 'full_tree_list' %}">Full Tree List</a>
-    <br />
-    <a href="{% url 'disposition_list' %}">List of Final Dispositions</a>
-    <br />
-    
-    
-    <!-- Keep this on the bottom -->
-    <a href="{% url 'save_backups' %}">Save Backups to the Hardcoded Locations</a>
+    <a href="{% url 'example_view' %}">Example view.</a>
 </p>
 
 {% endblock content %}

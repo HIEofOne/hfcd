@@ -19,7 +19,6 @@ class HfcdViewsError(Exception):
 
 
 def welcome(request):
-    return HttpResponse("Welcome page.")
     return render(request, 'hfcd/welcome.html', {
         'user': request.user,
     })
