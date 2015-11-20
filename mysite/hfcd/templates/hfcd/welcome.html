@@ -1,0 +1,30 @@
+{% extends "tasker/base.html" %}
+
+{% block title %}Tasker: Welcome{% endblock %}
+
+{% block breadcrumbs %}
+    Home
+{% endblock breadcrumbs %}
+
+
+{% block content %}
+
+<h1>Welcome to Tasker, a Productivity App</h1>
+
+<p>
+    Here are some links:
+    <br />
+    
+    <a href="{% url 'full_topo_list' %}">Full Toposorted List</a>
+    <br />
+    <a href="{% url 'full_tree_list' %}">Full Tree List</a>
+    <br />
+    <a href="{% url 'disposition_list' %}">List of Final Dispositions</a>
+    <br />
+    
+    
+    <!-- Keep this on the bottom -->
+    <a href="{% url 'save_backups' %}">Save Backups to the Hardcoded Locations</a>
+</p>
+
+{% endblock content %}

@@ -1,0 +1,84 @@
+{% extends "tasker/base.html" %}
+
+{# Everything wrapped in comment hashes (#) is a TODO item. #}
+
+{# load pts_tags #}
+
+
+{% block title %}{{ page_title }}{% endblock title %}
+
+
+{% block style_more %}
+
+div.multipurpose_buttons {
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+{% endblock style_more %}
+
+
+{% block script_more %}
+
+$(document).ready(function(){
+    
+    $("a.js_back").click(function(click){
+        click.preventDefault();
+        window.history.back();
+    });
+    
+    $("a.js_reload").click(function(click){
+        click.preventDefault();
+        // We want to reload this current URL, but we want the method to 
+        // be GET, even if the last request was a POST.
+        // 
+        // The following line does a POST (iff the last request was a POST), 
+        // so this is no good:
+        //     window.location.reload(true);
+        // 
+        // The following DOES work, but it may be a hack. I do not know 
+        // why it uses 'location' instead of 'window.location'.
+        location.replace(location.href);
+    });
+    
+});
+
+{% endblock script_more %}
+
+
+{% block breadcrumbs %}
+    <a href="{% url "welcome" %}">Home</a>
+    >
+    {{ page_title }}
+{% endblock breadcrumbs %}
+
+
+{% block content %}
+
+<h1>{{ page_title }}</h1>
+
+<p>
+    {% if is_safe %}
+        {{ subtitle|safe }}
+    {% else %}
+        {{ subtitle }}
+    {% endif %}
+</p>
+
+<div class="multipurpose_buttons">
+    
+    TODO: Buttons are not implemented yet.
+    
+    {% if show_back %}
+        {# button js text="Go Back" class="js_back" #}
+    {% endif %}
+    
+    {% if show_reload %}
+        {# button js text="Reload (Go Back)" class="js_reload" #}
+    {% endif %}
+    
+    {# button vf="welcome" text="Home" #}
+    
+</div>
+
+{% endblock content %}

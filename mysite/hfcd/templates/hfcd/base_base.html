@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+{% load staticfiles %}
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<title>{% block title %}Tasker: A Productivity App{% endblock %}</title>
+
+<link rel="stylesheet" type="text/css" 
+href="{% static 'tasker/base_style.css' %}" />
+
+<script language="javascript" type="text/javascript" 
+src="{% static 'tasker/jquery-2.1.4.min.js' %}"></script>
+
+
+<style type="text/css">
+
+{% block base_style %}{% endblock %}
+
+{% block style_more %}{% endblock %}
+
+</style>
+
+
+<script type="text/javascript">
+
+{% block base_script %}{% endblock %}
+
+{% block script_more %}{% endblock %}
+
+</script>
+
+
+{% block head_more %}{% endblock %}
+
+</head>
+
+<body>
+
+{% block base_content %}{% endblock %}
+
+</body>
+</html>

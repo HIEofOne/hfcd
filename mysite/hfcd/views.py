@@ -33,5 +33,5 @@ def example_view(request):
     })
 
 
-def raise_an_exeption(request):
+def raise_an_exception(request):
     raise HfcdViewsError("This is the description.", "This is more.")

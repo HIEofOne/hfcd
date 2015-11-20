@@ -1,0 +1,17 @@
+{% extends "admin/base.html" %}
+
+{% comment %}
+    This file originally came from here:
+        /Users/zakf/progs/envs/tasker/lib/python2.7/site-packages/django/...
+        ...contrib/admin/templates/admin/base_site.html
+    
+    This file was copied from Django version 1.8.4.
+{% endcomment %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'welcome' %}">The HIE of One Demo (HFCD)</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

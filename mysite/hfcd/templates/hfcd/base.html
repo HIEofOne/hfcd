@@ -1,0 +1,60 @@
+{% extends "tasker/base_base.html" %}
+
+{% block base_content %}
+
+<div id="header">
+    
+    <div id="header_top">
+    
+        <div id="header_left">
+        
+            <a href="{% url "welcome" %}">
+                Tasker
+            </a>
+        
+        </div>
+        
+        <div id="header_right">
+            
+            {% if not user.is_authenticated %}
+                <a href="{% url 'admin:login' %}">
+                Login</a>
+            {% else %}
+                Welcome,
+                <b>{{ user.username }}</b>
+                /
+                <a href="{% url 'admin:logout' %}">
+                Log Out</a>
+                /
+                <a href="/admin/">Admin Console</a>
+            {% endif %}
+        
+        </div>
+        
+        <div class="clearfix">.</div>
+    
+    </div> <!-- #header_top -->
+    
+    <div id="header_bottom">
+        
+        <div id="header_breadcrumbs">
+            
+            {% block breadcrumbs %}
+                breadcrumbs
+            {% endblock breadcrumbs %}
+        
+        </div>
+        
+        <div class="clearfix">.</div>
+    
+    </div> <!-- #header_bottom -->
+    
+</div> <!-- #header -->
+
+<div id="content">
+
+{% block content %}{% endblock %}
+
+</div> <!-- #content -->
+
+{% endblock base_content %}
