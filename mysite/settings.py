@@ -15,6 +15,20 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+## Some notes about BASE_DIR in the case of HFCD:
+# 
+# print "__file__ == %s" % __file__
+# 
+## __file__ == /Users/zakf/progs/hfcd/mysite/settings.py
+# 
+# print "BASE_DIR == %s" % BASE_DIR
+# 
+## BASE_DIR == /Users/zakf/progs/hfcd
+## 
+## Calling os.path.dirname() discards one 'piece' of the path. The Django 
+## settings.py default (which I have preserved) calls os.path.dirname() twice 
+## in order to discard two 'pieces', first 'settings.py' and then 'mysite'.
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -37,6 +51,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mysite.hfcd',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -55,7 +70,10 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'mysite', 'templates'),
+            os.path.join(BASE_DIR, 'mysite', 'hfcd', 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,7 +95,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'database', 'hfcd.sqlite'),
     }
 }
 
@@ -87,16 +105,24 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# Using the Pickle serializer, as I have done below, is VULNERABLE to attack. 
+# However, this possibility is quite remote for Tasker for multiple reasons. 
+# I use Pickle instead of the default (JSON) because Pickle can store a 
+# wider variety of Python objects. I am not sure whether this is necessary in 
+# the case of Tasker, but it was necessary for AMPS/PTS.
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
