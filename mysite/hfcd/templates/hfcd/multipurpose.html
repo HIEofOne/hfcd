@@ -67,17 +67,37 @@ $(document).ready(function(){
 
 <div class="multipurpose_buttons">
     
-    TODO: Buttons are not implemented yet.
-    
     {% if show_back %}
-        {# button js text="Go Back" class="js_back" #}
+        
+        <a href="#" class="big_button_link js_back js_button">
+            <div class="big_button js_back">
+                Go Back
+            </div>
+        </a>
+        
+        <div class="clearfix">.</div>
+        
     {% endif %}
     
     {% if show_reload %}
-        {# button js text="Reload (Go Back)" class="js_reload" #}
+        
+        <a href="#" class="big_button_link js_reload js_button">
+            <div class="big_button js_reload">
+                Reload (Go Back)
+            </div>
+        </a>
+        
+        <div class="clearfix">.</div>
+        
     {% endif %}
     
-    {# button vf="welcome" text="Home" #}
+    <a href="{% url 'welcome' %}" class="big_button_link">
+        <div class="big_button">
+            Home
+        </div>
+    </a>
+    
+    <div class="clearfix">.</div>
     
 </div>
 
