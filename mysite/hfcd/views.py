@@ -227,6 +227,10 @@ def definitions(request):
          "This is Alice (the patient, the Resource Owner, the RO)."),
         ('NPE', 
          "Non-person entity. In some contexts, this refers specifically to the Big Hospital (the Resource Server, the RS)."),
+        ('ROI',
+         "Release of Information form. This is a legal form that the patient must sign to allow the hospital to share patient data with a third party."),
+        ('Notice Endpoint', 
+         "One server can communicate with another server using the Notice Endpoint. Release of information receipts are sent to the Notice Endpoint of the Authorization Server."),
     ]
     
     terms.sort(key=lambda term: term[0])
@@ -432,12 +436,77 @@ def step03a(request):
 def step03b(request):    
     page_data = HospitalPageData(alice_str, 3, NUM_STEPS)
     page_title = "Thank You for Logging In"
-    next_step = 'broken_link'
+    next_step = 'hospital_roi_form'
     
     page_content = """
     <p>
         Thank you for logging in.
     </p>
+    
+    <p>
+        Would you like to set up an Authorization Server (AS) to act on your behalf? Please click the link below.
+    </p>
+    """
+    
+    return render(request, 'hfcd/normal_step.html', {
+        'user': request.user,
+        'page_title': page_title,
+        'page_data': page_data,
+        'page_content': page_content,
+        'next_step': next_step,
+    })
+
+
+def hospital_roi_form(request):
+    page_data = HospitalPageData(alice_str, 4, NUM_STEPS)
+    page_title = "Release of Information Form"
+    next_step = 'broken_link'
+    
+    page_content = """
+    <p>
+        You can use this form to set up an Authorization Server (AS). We have automatically filled in some of the information based on our hospital's records.
+    </p>
+    
+    <b>Patient Name:</b>
+    <br />
+    <input type="text" readonly value="Alice" size="25" />
+    
+    <br /><br />
+    
+    <b>Date of Birth:</b>
+    <br />
+    <input type="text" readonly value="01/01/1970" size="15" />
+    
+    <br /><br />
+    
+    <b>NPE Patient ID:</b>
+    <br />
+    <input type="text" readonly value="123456" size="10" />
+    Big Hospital uses this number to identify you.
+    
+    <br /><br />
+    
+    <b>What is your Authorization Server URI?</b>
+    <br />
+    If you don't already have an Authorization Server, you can get one from HIE of One by visiting <a href="/broken_link/">this website</a>.
+    <br />
+    <input type="text" size="60" />
+    <br />
+    (Demo note: Your input will be ignored and replaced with "alice_server.com", you can type anything or nothing.)
+    
+    <br /><br />
+    
+    <b>How much personal data can we release?</b>
+    <br />
+    Data release transaction receipts will be sent to the Notice Endpoint of your Authorization Server.
+    <br />
+    <input type="radio" name="data_level" value="non_sensitive" />
+    Comprehensive data set with <b>no</b> sensitive information.
+    <br />
+    <input type="radio" name="data_level" value="everything" />
+    Comprehensive data set <b>including</b> sensitive information.
+    
+    <br /><br />
     """
     
     return render(request, 'hfcd/normal_step.html', {
