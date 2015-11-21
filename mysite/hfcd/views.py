@@ -8,6 +8,9 @@ from mysite.hfcd.models import *
 from mysite.view_helpers import multipurpose
 
 
+NUM_STEPS = 1
+
+
 class HfcdViewsError(Exception):
     def __init__(self, description, more=''):
         self.description = description
@@ -155,3 +158,23 @@ def example_multipurpose(request):
         is_safe = True,
         show_back = True,
         show_reload = False)
+
+
+def step01(request):
+    """This is the first step of the Demo Story"""
+    
+    page_data = HelpPageData(None, 1, NUM_STEPS)
+    page_title = "Step 1"
+    
+    page_content = """
+    <p>
+        This is the first step.
+    </p>
+    """
+    
+    return render(request, 'hfcd/normal_step.html', {
+        'user': request.user,
+        'page_title': page_title,
+        'page_data': page_data,
+        'page_content': page_content,
+    })
