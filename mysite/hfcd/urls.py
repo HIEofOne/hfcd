@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^debugging_links/$', debugging_links, name='debugging_links'),
     url(r'^example_multipurpose/$', example_multipurpose, 
         name='example_multipurpose'),
+    url(r'^full_example/$', full_example, name='full_example'),
 ]

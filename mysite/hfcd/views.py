@@ -33,6 +33,13 @@ def example_view(request):
     })
 
 
+def full_example(request):
+    return render(request, 'hfcd/full_example.html', {
+        'user': request.user,
+        'page_title': "Full Example page_title",
+    })
+
+
 def raise_an_exception(request):
     raise HfcdViewsError("This is the description.", "This is more.")
 

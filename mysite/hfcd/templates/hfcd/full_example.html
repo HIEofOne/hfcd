@@ -1,0 +1,24 @@
+{% extends "hfcd/base.html" %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block breadcrumbs %}
+    Home
+    >
+    Full Example
+{% endblock breadcrumbs %}
+
+
+{% block content %}
+
+<h1>{{ page_title }}</h1>
+
+<p>
+    This is a more complete example page. This page shows several aspects which will appear on many pages.
+</p>
+
+<p>
+    The template variable <tt>page_title</tt> is the HTML TITLE attribute and also appears as an H1 heading above.
+</p>
+
+{% endblock content %}
