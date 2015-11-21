@@ -467,21 +467,16 @@ def hospital_roi_form(request):
         You can use this form to set up an Authorization Server (AS). We have automatically filled in some of the information based on our hospital's records.
     </p>
     
-    <b>Patient Name:</b>
-    <br />
-    <input type="text" readonly value="Alice" size="25" />
+    <b>Patient Name:</b> Alice
     
     <br /><br />
     
-    <b>Date of Birth:</b>
-    <br />
-    <input type="text" readonly value="01/01/1970" size="15" />
+    <b>Date of Birth:</b> 1/1/1970
     
     <br /><br />
     
-    <b>NPE Patient ID:</b>
+    <b>NPE Patient ID:</b> 123456
     <br />
-    <input type="text" readonly value="123456" size="10" />
     Big Hospital uses this number to identify you.
     
     <br /><br />
@@ -631,21 +626,16 @@ def alice_roi_form(request):
         You may review your entries and you may edit some of the fields, but some of the fields are read-only. For example, you can modify the expiration date. You <b>cannot</b> edit custom fields that are unique to BigHospital.com, because HIE of One is not customized to work with every single hospital on the planet.
     </p>
     
-    <b>Patient Name:</b>
-    <br />
-    <input type="text" readonly value="Alice" size="25" />
+    <b>Patient Name:</b> Alice
     
     <br /><br />
     
-    <b>Date of Birth:</b>
-    <br />
-    <input type="text" readonly value="01/01/1970" size="15" />
+    <b>Date of Birth:</b> 1/1/1970
     
     <br /><br />
     
-    <b>NPE Patient ID:</b>
+    <b>NPE Patient ID:</b> 123456
     <br />
-    <input type="text" readonly value="123456" size="10" />
     Big Hospital uses this number to identify you.
     
     <br /><br />
