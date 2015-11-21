@@ -496,10 +496,6 @@ def hospital_roi_form(request):
     
     <br /><br />
     
-    <b>Note:</b> The questions below this point are all optional. If you don't answer these questions here (on the hospital server), then you can answer these questions later on your own Authorization Server.
-    
-    <br /><br />
-    
     <b>How much personal data can we release?</b>
     <br />
     Data release transaction receipts will be sent to the Notice Endpoint of your Authorization Server.
@@ -509,6 +505,10 @@ def hospital_roi_form(request):
     <br />
     <input type="radio" name="data_level" value="everything" />
     Comprehensive data set <b>including</b> sensitive information.
+    
+    <br /><br />
+    
+    <b>Note:</b> The questions below this point are all optional. If you don't answer these questions here (on the hospital server), then you can answer these questions later on your own Authorization Server.
     
     <br /><br />
     
@@ -602,7 +602,7 @@ def step07(request):
 def step08(request):
     page_data = HelpPageData(alice_str, 8, NUM_STEPS)
     page_title = "Behind the Scenes: Step 8"
-    next_step = 'broken_link'
+    next_step = 'alice_roi_form'
     
     page_content = """
     <p>
@@ -620,7 +620,87 @@ def step08(request):
 
 
 def alice_roi_form(request):
-    pass
+    page_data = AuthServerPageData(alice_str, 9, NUM_STEPS)
+    page_title = "View and Edit: Release of Information Form"
+    next_step = 'step10_11_12'
+    
+    page_content = """
+    <p>
+        This form was received from BigHospital.com. Apparently you just filled out a Release of Information form (ROI) on BigHospital.com, and this is the data you entered.
+    </p>
+    
+    <p>
+        You may review your entries and you may edit some of the fields, but some of the fields are read-only. For example, you can modify the expiration date. You <b>cannot</b> edit custom fields that are unique to BigHospital.com, because HIE of One is not customized to work with every single hospital on the planet.
+    </p>
+    
+    <b>Patient Name:</b>
+    <br />
+    <input type="text" readonly value="Alice" size="25" />
+    
+    <br /><br />
+    
+    <b>Date of Birth:</b>
+    <br />
+    <input type="text" readonly value="01/01/1970" size="15" />
+    
+    <br /><br />
+    
+    <b>NPE Patient ID:</b>
+    <br />
+    <input type="text" readonly value="123456" size="10" />
+    Big Hospital uses this number to identify you.
+    
+    <br /><br />
+    
+    <b>What is your Authorization Server URI?</b>
+    <br />
+    <input type="text" readonly value="alice_server.com" size="60" />
+    
+    <br /><br />
+    
+    <b>How much personal data can we release?</b>
+    <br />
+    <b>Note:</b> You cannot edit this setting using HIE of One because it was a custom setting. If you want to edit this setting, you will need to login to the hospital website.
+    <br />
+    Data release transaction receipts will be sent to the Notice Endpoint of your Authorization Server.
+    <br />
+    <input type="radio" name="data_level" value="non_sensitive" disabled="disabled" />
+    Comprehensive data set with <b>no</b> sensitive information.
+    <br />
+    <input type="radio" name="data_level" value="everything" checked="checked" />
+    Comprehensive data set <b>including</b> sensitive information.
+    
+    <br /><br />
+    
+    <b>When does this authorization expire?</b>
+    <br />
+    <input type="text" size="15" value="01/01/2017" />
+    Date format: MM/DD/YYYY
+    <br />
+    
+    <br /><br />
+    
+    <b>Requesting Party Authentication:</b>
+    <br />
+    If you do not check "Allow", then all requesting parties must be authenticated by your Authorization Server.
+    <br />
+    <input type="checkbox" checked="checked" />
+    Allow NPE to authenticate the requesting party.
+    <br />
+    (Demo note: Your choice will be ignored.)
+    <br />
+    (Zak note: I don't understand what this last checkbox means. I suspect this Demo Story only makes sense if it is NOT checked, but I am not sure. The term NPE here is not obvious, but I think it refers to Big Hospital.)
+    
+    <br /><br />
+    """
+    
+    return render(request, 'hfcd/normal_step.html', {
+        'user': request.user,
+        'page_title': page_title,
+        'page_data': page_data,
+        'page_content': page_content,
+        'next_step': next_step,
+    })
 
 
 def step10_11_12(request):
