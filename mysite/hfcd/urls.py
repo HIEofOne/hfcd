@@ -61,4 +61,7 @@ urlpatterns = [
     hospital_url(step03a, 'step03a'),
     hospital_url(step03b, 'step03b'),
     hospital_url(hospital_roi_form, 'hospital_roi_form'),
+    help_url(step05, 'step05'),
+    auth_server_url(step07, 'step07'),
+    help_url(step08, 'step08'),
 ]

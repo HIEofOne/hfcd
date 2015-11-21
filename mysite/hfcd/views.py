@@ -460,7 +460,7 @@ def step03b(request):
 def hospital_roi_form(request):
     page_data = HospitalPageData(alice_str, 4, NUM_STEPS)
     page_title = "Release of Information Form"
-    next_step = 'broken_link'
+    next_step = 'step05'
     
     page_content = """
     <p>
@@ -496,6 +496,10 @@ def hospital_roi_form(request):
     
     <br /><br />
     
+    <b>Note:</b> The questions below this point are all optional. If you don't answer these questions here (on the hospital server), then you can answer these questions later on your own Authorization Server.
+    
+    <br /><br />
+    
     <b>How much personal data can we release?</b>
     <br />
     Data release transaction receipts will be sent to the Notice Endpoint of your Authorization Server.
@@ -507,6 +511,103 @@ def hospital_roi_form(request):
     Comprehensive data set <b>including</b> sensitive information.
     
     <br /><br />
+    
+    <b>When does this authorization expire?</b>
+    <br />
+    <input type="text" size="15" />
+    Date format: MM/DD/YYYY
+    <br />
+    (Demo note: Your input will be ignored and replaced with "01/01/2017", so you can type anything or nothing.)
+    
+    <br /><br />
+    
+    <b>Requesting Party Authentication:</b>
+    <br />
+    If you do not check "Allow", then all requesting parties must be authenticated by your Authorization Server.
+    <br />
+    <input type="checkbox" />
+    Allow NPE to authenticate the requesting party.
+    <br />
+    (Demo note: Your choice will be ignored.)
+    <br />
+    (Zak note: I don't understand what this last checkbox means. I suspect this Demo Story only makes sense if it is NOT checked, but I am not sure. The term NPE here is not obvious, but I think it refers to Big Hospital.)
+    
+    <br /><br />
+    """
+    
+    return render(request, 'hfcd/normal_step.html', {
+        'user': request.user,
+        'page_title': page_title,
+        'page_data': page_data,
+        'page_content': page_content,
+        'next_step': next_step,
+    })
+
+
+def step05(request):
+    page_data = HelpPageData(alice_str, 5, NUM_STEPS)
+    page_title = "Behind the Scenes: Step 5"
+    next_step = 'step07'
+    
+    page_content = """
+    <p>
+        You (Alice) just told Big Hospital about your Authorization Server. Remember that you own and control your Authorization Server. Step 5 of the Baseline HEART Sequence just took place, there are legal consequences. I think Step 6 also just took place.
+    </p>
+    
+    <p>
+        After you clicked "submit" on the ROI form (Release of Information) from the past step, you were redirected to your own Authorization Server, <tt>alice_server.com</tt>.
+    </p>
+    """
+    
+    return render(request, 'hfcd/normal_step.html', {
+        'user': request.user,
+        'page_title': page_title,
+        'page_data': page_data,
+        'page_content': page_content,
+        'next_step': next_step,
+    })
+
+
+def step07(request):    
+    page_data = AuthServerPageData(alice_str, 7, NUM_STEPS)
+    page_title = "Please Sign In (HIE of One)"
+    next_step = 'step08'
+    
+    page_content = """
+    <p>
+        This HIE of One Authorization Server belongs to Alice. Please provide login credentials.
+    </p>
+    
+    <p>
+        Username:
+        <input type="text" value="Alice" size="30" />
+        
+        <br /><br />
+        
+        Password:
+        <input type="password" size="20" />
+        (Demo note: You can type anything.)
+    </p>
+    """
+    
+    return render(request, 'hfcd/normal_step.html', {
+        'user': request.user,
+        'page_title': page_title,
+        'page_data': page_data,
+        'page_content': page_content,
+        'next_step': next_step,
+    })
+
+
+def step08(request):
+    page_data = HelpPageData(alice_str, 8, NUM_STEPS)
+    page_title = "Behind the Scenes: Step 8"
+    next_step = 'broken_link'
+    
+    page_content = """
+    <p>
+        The Release of Information form (ROI) from the hospital was just transferred from the hospital's server to your personal Authorization Server. You can now review the form and modify it if desired.
+    </p>
     """
     
     return render(request, 'hfcd/normal_step.html', {
