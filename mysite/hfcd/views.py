@@ -27,13 +27,14 @@ class PageData(object):
     """
     
     def __init__(self, header, server, owner, you_are, curr_step=None, 
-                 total_steps=None):
+                 total_steps=None, is_help=False):
         self.header = header    # Example: "Big Hospital"
         self.server = server    # Example: "Hospital EHR (RS)"
         self.owner = owner      # Example: "Big Hospital, Inc." or alice_str
         self.you_are = you_are  # Example: "Alice (the patient)"
         self.curr_step = curr_step
         self.total_steps = total_steps
+        self.is_help = is_help  # Is this a meta / help page?
 
 
 # These are the allowable values of PageData.you_are:
@@ -73,6 +74,19 @@ class BobServerPageData(PageData):
             curr_step = curr_step,
             total_steps = total_steps)
 
+class HelpPageData(PageData):
+    """This is used on /help/ pages, which give information"""
+    
+    def __init__(self, you_are, curr_step=None, total_steps=None):
+        super(HelpPageData, self).__init__(
+            header = "HIE of One Demo Help",
+            server = "N/A",
+            owner = "N/A",
+            you_are = you_are,
+            curr_step = curr_step,
+            total_steps = total_steps,
+            is_help = True)
+
 
 def welcome(request):
     return render(request, 'hfcd/welcome.html', {
@@ -98,9 +112,15 @@ def full_example(request):
             curr_step = 2,
             total_steps = 3)
     
-    else:
+    elif False:
         # This should look exactly the same as the clause above:
         page_data = HospitalPageData(
+            you_are = alice_str,
+            curr_step = 2,
+            total_steps = 3)
+    
+    elif True:
+        page_data = HelpPageData(
             you_are = alice_str,
             curr_step = 2,
             total_steps = 3)

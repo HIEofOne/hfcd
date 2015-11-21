@@ -62,11 +62,20 @@
             <div id="pd_sidebar_top">About This Page:</div>
             
             <div id="pd_sidebar_content">
-                <b>Current Server:</b> {{ page_data.server }}
-                <br />
-                
-                <b>Owner of Server:</b> {{ page_data.owner }}
-                <br />
+                {% if page_data.is_help %}
+                    
+                    This is a help page.
+                    <br />
+                    
+                {% else %}
+                    
+                    <b>Current Server:</b> {{ page_data.server }}
+                    <br />
+                    
+                    <b>Owner of Server:</b> {{ page_data.owner }}
+                    <br />
+                    
+                {% endif %}
                 
                 You are currently pretending to be <b>{{ page_data.you_are }}.</b>
                 
