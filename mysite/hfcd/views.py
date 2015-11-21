@@ -160,6 +160,19 @@ def example_multipurpose(request):
         show_reload = False)
 
 
+def the_story(request):
+    """This page explains the Demo Story"""
+    
+    page_data = HelpPageData(None)
+    page_title = "The Demo Story"
+    
+    return render(request, 'hfcd/the_story.html', {
+        'user': request.user,
+        'page_title': page_title,
+        'page_data': page_data,
+    })
+
+
 def step01(request):
     """This is the first step of the Demo Story"""
     

@@ -1,0 +1,36 @@
+{% extends "hfcd/base.html" %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block breadcrumbs %}
+    <a href="{% url 'welcome' %}">Home</a>
+    >
+    {{ page_title }}
+{% endblock breadcrumbs %}
+
+
+{% block content %}
+
+<h1>{{ page_title }}</h1>
+
+<h2>Very Short Version:</h2>
+
+<p>
+    Alice goes to the Big Hospital and gets some blood tests. Alice wants to share these blood test results with her doctor, Bob, but he is not affiliated with the Big Hospital. Using her personal HIE of One server, Alice grants Bob access to her medical records, and then Bob successfully retrieves the blood test results.
+</p>
+
+<p>
+    As you proceed through the Demo Story, you will impersonate Alice and Bob. You will access three different servers. (These are fake servers, you will actually never leave HIEofOneDemo.info.) You will also see helpful messages along the way.
+</p>
+
+<h2>Longer Version:</h2>
+
+<p>
+    Prior to the beginning of the Demo Story, Alice set up an HIE of One server for herself. The HIE of One server is also called the <b>Authorization Server (AS)</b>. Alice's HIE of One server is a Digial Ocean Droplet, which is a virtual private server (VPS) that costs $5 / month. Setting it up was easy, Alice only needed a credit card and an email address or phone number (for SMS messages).
+</p>
+
+<p>
+    This story is not complete yet.
+</p>
+
+{% endblock content %}

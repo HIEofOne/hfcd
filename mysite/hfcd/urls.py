@@ -13,4 +13,5 @@ urlpatterns = [
         name='example_multipurpose'),
     url(r'^full_example/$', full_example, name='full_example'),
     url(r'^help/step01/$', step01, name='step01'),
+    url(r'^help/docs/the_story/$', the_story, name='the_story'),
 ]
