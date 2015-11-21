@@ -528,9 +528,7 @@ def hospital_roi_form(request):
     <input type="checkbox" />
     Allow NPE to authenticate the requesting party.
     <br />
-    (Demo note: Your choice will be ignored.)
-    <br />
-    (Zak note: I don't understand what this last checkbox means. I suspect this Demo Story only makes sense if it is NOT checked, but I am not sure. The term NPE here is not obvious, but I think it refers to Big Hospital.)
+    (Demo note: Your choice will be ignored. To understand what this checkbox does, please refer to Step 14, which has not occurred yet.)
     
     <br /><br />
     """
@@ -687,9 +685,7 @@ def alice_roi_form(request):
     <input type="checkbox" checked="checked" />
     Allow NPE to authenticate the requesting party.
     <br />
-    (Demo note: Your choice will be ignored.)
-    <br />
-    (Zak note: I don't understand what this last checkbox means. I suspect this Demo Story only makes sense if it is NOT checked, but I am not sure. The term NPE here is not obvious, but I think it refers to Big Hospital.)
+    (Demo note: Your choice will be ignored. To understand what this checkbox does, please refer to Step 14, which has not occurred yet.)
     
     <br /><br />
     """
@@ -704,56 +700,331 @@ def alice_roi_form(request):
 
 
 def step10_11_12(request):
-    pass
+    page_data = HelpPageData(alice_str, 10, NUM_STEPS)
+    page_title = "Behind the Scenes: Steps 10, 11, and 12"
+    next_step = 'bob_finds_out'
+    
+    page_content = """
+    <p>
+        Lorem ipsum.
+    </p>
+    """
+    
+    return render(request, 'hfcd/normal_step.html', {
+        'user': request.user,
+        'page_title': page_title,
+        'page_data': page_data,
+        'page_content': page_content,
+        'next_step': next_step,
+    })
 
 
 def bob_finds_out(request):
-    pass
+    page_data = HelpPageData(None, 12, NUM_STEPS)
+    page_title = "Dr. Bob Hears about the Blood Tests"
+    next_step = 'bob_logs_in'
+    
+    page_content = """
+    <p>
+        You are no longer pretending to be Alice (the patient). From now on, you are pretending to be Bob (the doctor).
+    </p>
+    """
+    
+    return render(request, 'hfcd/normal_step.html', {
+        'user': request.user,
+        'page_title': page_title,
+        'page_data': page_data,
+        'page_content': page_content,
+        'next_step': next_step,
+    })
 
 
 def bob_logs_in(request):
-    pass    # Use the standard login form
+    page_data = BobServerPageData(bob_str, 12, NUM_STEPS)
+    page_title = "Enter Your EHR Password"
+    next_step = 'bob_says_what_he_wants'
+    
+    page_content = """
+    <p>
+        Welcome to the Small Doctor's Office EHR system. Please provide your login credentials.
+    </p>
+    
+    <p>
+        Username:
+        <input type="text" value="Bob" size="30" />
+        
+        <br /><br />
+        
+        Password:
+        <input type="password" size="20" />
+        (Demo note: You can type anything.)
+    </p>
+    """
+    
+    return render(request, 'hfcd/normal_step.html', {
+        'user': request.user,
+        'page_title': page_title,
+        'page_data': page_data,
+        'page_content': page_content,
+        'next_step': next_step,
+    })
 
 
 def bob_says_what_he_wants(request):
-    pass
+    page_data = BobServerPageData(bob_str, 12, NUM_STEPS)
+    page_title = "What Records Do You Want to Download?"
+    next_step = 'step13'
+    
+    page_content = """
+    <p>
+        Use this form to request medical records from other EHR systems.
+    </p>
+    
+    <b>Remote EHR URI:</b>
+    <br />
+    <input type="text" value="bighospital.com" size="40" />
+    
+    <br /><br />
+    
+    <b>Patient Identifier:</b>
+    <br />
+    <input type="text" value="123456" size="10" />
+    <br />
+    (Demo note: The value 123456 corresponds to Alice.)
+    
+    <br /><br />
+    
+    <b>Medical Record Identifier:</b>
+    <br />
+    <input type="text" value="567890" size="10" />
+    <br />
+    (Demo note: This value corresponds to Alice's blood test results.)
+    
+    <br /><br />
+    """
+    
+    return render(request, 'hfcd/normal_step.html', {
+        'user': request.user,
+        'page_title': page_title,
+        'page_data': page_data,
+        'page_content': page_content,
+        'next_step': next_step,
+    })
 
 
 def step13(request):
-    pass
+    page_data = HospitalPageData(bob_str, 13, NUM_STEPS)
+    page_title = "Medical Record Request Portal"
+    next_step = 'step14'
+    
+    page_content = """
+    <p>
+        Welcome to the Big Hospital website. You have requested access to a patient record which is governed by a separate Authorization Server. You will now be redirected to the Authorization Server.
+    </p>
+    """
+    
+    return render(request, 'hfcd/normal_step.html', {
+        'user': request.user,
+        'page_title': page_title,
+        'page_data': page_data,
+        'page_content': page_content,
+        'next_step': next_step,
+    })
 
 
 def step14(request):
-    pass
+    page_data = AuthServerPageData(bob_str, 14, NUM_STEPS)
+    page_title = "Please Sign In (HIE of One)"
+    next_step = 'step15'
+    
+    page_content = """
+    <p>
+        This HIE of One Authorization Server belongs to Alice. Please provide login credentials.
+    </p>
+    
+    <p>
+        <b>Demo note:</b> In this Demo Story, Dr. Bob has a password for Alice's HIE of One server. You (as Dr. Bob) will enter that password below. This is plausible, Alice might give a password to Bob, her trusted family doctor. However, there are at least two other ways by which Bob can prove his identity to Alice's Authenication Server: (1) Alice can set her server to grant access to any doctor in a federated identity network via the OpenID Connect standard. For example, the state medical society could act as ID provider. (2) The hospital can act as the ID provider and authenticate the requesting party. In this case, Big Hospital would vouch for Dr. Bob. This is the meaning of the checkbox "Allow NPE to authenticate the requesting party" in the ROI form. If Alice trusts Big Hospital, and Big Hospital trusts Dr. Bob, then Alice's server will automatically trust Dr. Bob.
+    </p>
+    
+    <p>
+        Username:
+        <input type="text" value="Bob" size="30" />
+        
+        <br /><br />
+        
+        Password:
+        <input type="password" size="20" />
+        (Demo note: You can type anything.)
+    </p>
+    """
+    
+    return render(request, 'hfcd/normal_step.html', {
+        'user': request.user,
+        'page_title': page_title,
+        'page_data': page_data,
+        'page_content': page_content,
+        'next_step': next_step,
+    })
 
 
 def step15(request):
-    pass
+    page_data = HelpPageData(bob_str, 15, NUM_STEPS)
+    page_title = "Behind the Scenes: Step 15"
+    next_step = 'step16'
+    
+    page_content = """
+    <p>
+        Lorem ipsum.
+    </p>
+    """
+    
+    return render(request, 'hfcd/normal_step.html', {
+        'user': request.user,
+        'page_title': page_title,
+        'page_data': page_data,
+        'page_content': page_content,
+        'next_step': next_step,
+    })
 
 
 def step16(request):
-    pass
+    page_data = HelpPageData(bob_str, 16, NUM_STEPS)
+    page_title = "Behind the Scenes: Step 16"
+    next_step = 'step17'
+    
+    page_content = """
+    <p>
+        Lorem ipsum.
+    </p>
+    """
+    
+    return render(request, 'hfcd/normal_step.html', {
+        'user': request.user,
+        'page_title': page_title,
+        'page_data': page_data,
+        'page_content': page_content,
+        'next_step': next_step,
+    })
 
 
 def step17(request):
-    pass
+    page_data = HelpPageData(bob_str, 17, NUM_STEPS)
+    page_title = "Behind the Scenes: Step 17"
+    next_step = 'step18'
+    
+    page_content = """
+    <p>
+        Lorem ipsum.
+    </p>
+    """
+    
+    return render(request, 'hfcd/normal_step.html', {
+        'user': request.user,
+        'page_title': page_title,
+        'page_data': page_data,
+        'page_content': page_content,
+        'next_step': next_step,
+    })
 
 
 def step18(request):
-    pass
+    page_data = HelpPageData(bob_str, 18, NUM_STEPS)
+    page_title = "Behind the Scenes: Step 18"
+    next_step = 'step19'
+    
+    page_content = """
+    <p>
+        Lorem ipsum.
+    </p>
+    """
+    
+    return render(request, 'hfcd/normal_step.html', {
+        'user': request.user,
+        'page_title': page_title,
+        'page_data': page_data,
+        'page_content': page_content,
+        'next_step': next_step,
+    })
 
 
 def step19(request):
-    pass
+    page_data = HelpPageData(bob_str, 19, NUM_STEPS)
+    page_title = "Behind the Scenes: Step 19"
+    next_step = 'step20'
+    
+    page_content = """
+    <p>
+        Lorem ipsum.
+    </p>
+    """
+    
+    return render(request, 'hfcd/normal_step.html', {
+        'user': request.user,
+        'page_title': page_title,
+        'page_data': page_data,
+        'page_content': page_content,
+        'next_step': next_step,
+    })
 
 
 def step20(request):
-    pass
+    page_data = HelpPageData(bob_str, 20, NUM_STEPS)
+    page_title = "Behind the Scenes: Step 20"
+    next_step = 'step21'
+    
+    page_content = """
+    <p>
+        Lorem ipsum.
+    </p>
+    """
+    
+    return render(request, 'hfcd/normal_step.html', {
+        'user': request.user,
+        'page_title': page_title,
+        'page_data': page_data,
+        'page_content': page_content,
+        'next_step': next_step,
+    })
 
 
 def step21(request):
-    pass
+    page_data = HelpPageData(bob_str, 21, NUM_STEPS)
+    page_title = "Behind the Scenes: Step 21"
+    next_step = 'step22'
+    
+    page_content = """
+    <p>
+        Lorem ipsum.
+    </p>
+    """
+    
+    return render(request, 'hfcd/normal_step.html', {
+        'user': request.user,
+        'page_title': page_title,
+        'page_data': page_data,
+        'page_content': page_content,
+        'next_step': next_step,
+    })
 
 
 def step22(request):
-    pass
+    page_data = HelpPageData(bob_str, 22, NUM_STEPS)
+    page_title = "Behind the Scenes: Step 22"
+    next_step = 'welcome'
+    
+    page_content = """
+    <p>
+        Lorem ipsum.
+    </p>
+    
+    <h2>Congratulations, that was the final step.</h2>
+    <br />
+    """
+    
+    return render(request, 'hfcd/normal_step.html', {
+        'user': request.user,
+        'page_title': page_title,
+        'page_data': page_data,
+        'page_content': page_content,
+        'next_step': next_step,
+    })
