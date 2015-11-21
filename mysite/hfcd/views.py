@@ -160,6 +160,33 @@ def example_multipurpose(request):
         show_reload = False)
 
 
+def broken_link(request):
+    return multipurpose(
+        request,
+        "Broken Link",
+        subtitle = "This website is incomplete.",
+        show_back = True)
+
+
+def help_docs(request):
+    """List the help pages"""
+    
+    page_data = HelpPageData(None)
+    page_title = "Documentation Home (Help)"
+    
+    help_pages = [
+        ('the_story', "The Demo Story"),
+        ('definitions', "Defintions"),
+    ]
+    
+    return render(request, 'hfcd/help_docs.html', {
+        'user': request.user,
+        'page_title': page_title,
+        'page_data': page_data,
+        'help_pages': help_pages,
+    })
+
+
 def the_story(request):
     """This page explains the Demo Story"""
     

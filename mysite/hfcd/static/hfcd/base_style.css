@@ -164,6 +164,11 @@ div#footer_image {
     margin: 0px auto;
 }
 
+div.one_help_item {
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
 span.red {
     color: #FF0000;
     font-weight: bold;

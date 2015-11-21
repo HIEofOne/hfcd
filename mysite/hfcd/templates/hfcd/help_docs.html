@@ -5,8 +5,6 @@
 {% block breadcrumbs %}
     <a href="{% url 'welcome' %}">Home</a>
     >
-    <a href="{% url 'help_docs' %}">Help</a>
-    >
     {{ page_title }}
 {% endblock breadcrumbs %}
 
@@ -17,15 +15,9 @@
 
 <div class="indent">
 
-{% for term in terms %}
-    <div class="define_one_term">
-        <div class="definition_term">
-            {{ term.0 }}:
-        </div>
-        
-        <div class="definition_meaning">
-            {{ term.1 }}
-        </div>
+{% for help_page in help_pages %}
+    <div class="one_help_item">
+        <a href="{% url help_page.0 %}">{{ help_page.1 }}</a>
     </div>
 {% endfor %}
 
