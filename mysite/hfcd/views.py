@@ -24,6 +24,8 @@ class PageData(object):
     
     Note that self.header appears in the top banner, but everything else appears in the right-hand sidebar (box).
     
+    Iff you_are == None then you are not pretending to be anyone.
+    
     """
     
     def __init__(self, header, server, owner, you_are, curr_step=None, 
@@ -89,8 +91,10 @@ class HelpPageData(PageData):
 
 
 def welcome(request):
+    page_data = HelpPageData(you_are = None)
     return render(request, 'hfcd/welcome.html', {
         'user': request.user,
+        'page_data': page_data,
     })
 
 

@@ -1,0 +1,20 @@
+{% extends "hfcd/base.html" %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block breadcrumbs %}
+    <a href="{% url 'welcome' %}">Home</a>
+    >
+    {{ page_title }}
+{% endblock breadcrumbs %}
+
+
+{% block content %}
+
+<h1>{{ page_title }}</h1>
+
+<p>
+    Lorem ipsum.
+</p>
+
+{% endblock content %}

@@ -77,7 +77,11 @@
                     
                 {% endif %}
                 
-                You are currently pretending to be <b>{{ page_data.you_are }}.</b>
+                {% if page_data.you_are %}
+                    You are currently pretending to be <b>{{ page_data.you_are }}.</b>
+                {% else %}
+                    You are not pretending to be someone else.
+                {% endif %}
                 
                 {% if page_data.curr_step %}
                     <br />
