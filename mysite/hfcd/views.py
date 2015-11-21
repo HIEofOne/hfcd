@@ -180,10 +180,24 @@ def definitions(request):
     page_title = "Helpful Definitions"
     
     terms = [
-        ('Alice', "Alice is the patient."),
-        ('Foo Bar', """This is a very very very long definition that wil rw ldkj lkj lkj lkj lkj lkj lkj lkj lkjliweijlkj lkj lekjwlrkejl kjwe lkjrw elkjr wlekjr wlekjr lwkejrlwkej rlkwje rlkwje rlkwejr lwkejr lkwejr lwkejr lwkejr wlekjr wlekjr wlekjr wlekjr welkrj welkjr wlekrj welkrj welkrj welkrj welkrj welkrj welkrj welkjrwlekjr"""),
-        ('Baz', "Foo"),
+        ('Alice', 
+         "Alice is the patient. She is also the Resource Owner or RO."),
+        ('Bob', 
+         "Bob is the doctor. He is also the Requesting Party or RqP."),
+        ('Big Hospital', 
+         "This is the hospital. They are the Resource Server or RS. They are also a non-person entity (NPE). The hospital has an electronic health record system (EHR). In some documents, the hospital's EHR is called EHR-B. Sometimes the hospital's EHR is called the NPE EHR. The 'other' EHR is Dr. Bob's EHR. For information about Dr. Bob's EHR, see RqP and C (client)."),
+        ('C', 
+         "This stands for Client. The client, in this context, is Dr. Bob's EHR. Recall that Dr. Bob is the Requesting Party or RqP. Bob's EHR is sometimes called EHR-A."),
+        ('RO', "Resource Owner, Alice, the patient."),
+        ('RS', 
+         "Resource Server, this is the Big Hospital EHR. This server has Alice's blood test results. Notice that Alice's server never has the blood test results, Alice's server only handles authorization."),
+        ('AS', 
+         "Authorization Server, this is Alice's server. This is an HIE of One server. Alice owns and controls this server."),
+        ('RqP', 
+         "Requesting Party, this is Dr. Bob, he requests the blood test results from the hospital."),
     ]
+    
+    terms.sort(key=lambda term: term[0])
     
     return render(request, 'hfcd/definitions.html', {
         'user': request.user,
