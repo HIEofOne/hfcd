@@ -127,6 +127,25 @@ div#header_navigation {
     float: right;
 }
 
+div#page_data_sidebar {
+    float: right;
+    border: 1px solid black;
+    padding: 15px;
+    margin: 15px;
+    background-color: #CCCCCC;
+}
+
+div#pd_sidebar_top {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding-bottom: 10px;
+}
+
+div#pd_sidebar_content {
+    line-height: 1.6em;
+}
+
 div#content {
     padding: 15px;
 }

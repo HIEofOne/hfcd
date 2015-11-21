@@ -9,7 +9,11 @@
         <div id="header_left">
         
             <a href="{% url "welcome" %}">
-                TODO: This changes
+                {% if page_data %}
+                    {{ page_data.header }}
+                {% else %}
+                    HIE of One Demo
+                {% endif %}
             </a>
         
         </div>
@@ -52,9 +56,30 @@
 </div> <!-- #header -->
 
 <div id="content">
-
-{% block content %}{% endblock %}
-
+    
+    {% if page_data %}
+        <div id="page_data_sidebar">
+            <div id="pd_sidebar_top">About This Page:</div>
+            
+            <div id="pd_sidebar_content">
+                <b>Current Server:</b> {{ page_data.server }}
+                <br />
+                
+                <b>Owner of Server:</b> {{ page_data.owner }}
+                <br />
+                
+                You are currently pretending to be <b>{{ page_data.you_are }}.</b>
+                
+                {% if page_data.curr_step %}
+                    <br />
+                    <b>Progress:</b> Step {{ page_data.curr_step }} of {{ page_data.total_steps }}
+                {% endif %}
+            </div>
+        </div> <!-- #page_data_sidebar -->
+    {% endif %}
+    
+    {% block content %}{% endblock %}
+    
 </div> <!-- #content -->
 
 {% endblock base_content %}

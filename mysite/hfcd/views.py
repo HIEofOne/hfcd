@@ -19,6 +19,61 @@ class HfcdViewsError(Exception):
             return self.description
 
 
+class PageData(object):
+    """Stores the header (top banner), server name, and your character
+    
+    Note that self.header appears in the top banner, but everything else appears in the right-hand sidebar (box).
+    
+    """
+    
+    def __init__(self, header, server, owner, you_are, curr_step=None, 
+                 total_steps=None):
+        self.header = header    # Example: "Big Hospital"
+        self.server = server    # Example: "Hospital EHR (RS)"
+        self.owner = owner      # Example: "Big Hospital, Inc." or alice_str
+        self.you_are = you_are  # Example: "Alice (the patient)"
+        self.curr_step = curr_step
+        self.total_steps = total_steps
+
+
+# These are the allowable values of PageData.you_are:
+alice_str = "Alice (the patient, RO)"
+bob_str = "Bob (the doctor, RqP)"
+
+
+class HospitalPageData(PageData):
+    """This is a PageData object with some defaults set"""
+    
+    def __init__(self, you_are, curr_step=None, total_steps=None):
+        super(HospitalPageData, self).__init__(
+            header = "Big Hospital",
+            server = "Hospital EHR (RS)",
+            owner = "Big Hospital, Inc.",
+            you_are = you_are,
+            curr_step = curr_step,
+            total_steps = total_steps)
+
+class AuthServerPageData(PageData):
+    def __init__(self, you_are, curr_step=None, total_steps=None):
+        super(AuthServerPageData, self).__init__(
+            header = "Alice's HIE of One Server",
+            server = "Authorization Server (AS)",
+            owner = alice_str,
+            you_are = you_are,
+            curr_step = curr_step,
+            total_steps = total_steps)
+
+class BobServerPageData(PageData):
+    def __init__(self, you_are, curr_step=None, total_steps=None):
+        super(BobServerPageData, self).__init__(
+            header = "Dr. Bob's Server",
+            server = "Dr. Bob's Server (C)",
+            owner = bob_str,
+            you_are = you_are,
+            curr_step = curr_step,
+            total_steps = total_steps)
+
+
 def welcome(request):
     return render(request, 'hfcd/welcome.html', {
         'user': request.user,
@@ -34,9 +89,26 @@ def example_view(request):
 
 
 def full_example(request):
+    if False:
+        page_data = PageData(
+            header = "Big Hospital",
+            server = "Hospital EHR (RS)",
+            owner = "Big Hospital, Inc.",
+            you_are = "Alice (the patient, RO)",
+            curr_step = 2,
+            total_steps = 3)
+    
+    else:
+        # This should look exactly the same as the clause above:
+        page_data = HospitalPageData(
+            you_are = alice_str,
+            curr_step = 2,
+            total_steps = 3)
+    
     return render(request, 'hfcd/full_example.html', {
         'user': request.user,
         'page_title': "Full Example page_title",
+        'page_data': page_data,
     })
 
 
