@@ -617,3 +617,63 @@ def step08(request):
         'page_content': page_content,
         'next_step': next_step,
     })
+
+
+def alice_roi_form(request):
+    pass
+
+
+def step10_11_12(request):
+    pass
+
+
+def bob_finds_out(request):
+    pass
+
+
+def bob_logs_in(request):
+    pass    # Use the standard login form
+
+
+def bob_says_what_he_wants(request):
+    pass
+
+
+def step13(request):
+    pass
+
+
+def step14(request):
+    pass
+
+
+def step15(request):
+    pass
+
+
+def step16(request):
+    pass
+
+
+def step17(request):
+    pass
+
+
+def step18(request):
+    pass
+
+
+def step19(request):
+    pass
+
+
+def step20(request):
+    pass
+
+
+def step21(request):
+    pass
+
+
+def step22(request):
+    pass
