@@ -30,6 +30,10 @@ p {
     padding: 0px 0px 20px 0px;
 }
 
+div.indent {
+    margin-left: 20px;
+}
+
 pre.monospace_pre {
     font-family: monospace;
     line-height: 1.1em;

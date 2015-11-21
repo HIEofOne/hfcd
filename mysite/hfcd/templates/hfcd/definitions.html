@@ -13,6 +13,8 @@
 
 <h1>{{ page_title }}</h1>
 
+<div class="indent">
+
 {% for term in terms %}
     <div class="define_one_term">
         <div class="definition_term">
@@ -24,5 +26,7 @@
         </div>
     </div>
 {% endfor %}
+
+</div> <!-- div.indent -->
 
 {% endblock content %}
