@@ -780,25 +780,11 @@ def bob_says_what_he_wants(request):
         Use this form to request medical records from other EHR systems.
     </p>
     
-    <b>Remote EHR URI:</b>
+    <b>Remote Medical Record URI:</b>
     <br />
-    <input type="text" value="bighospital.com" size="40" />
-    
-    <br /><br />
-    
-    <b>Patient Identifier:</b>
+    <input type="text" value="https://bighospital.com/?patient=123456&record=567890" size="70" />
     <br />
-    <input type="text" value="123456" size="10" />
-    <br />
-    (Demo note: The value 123456 corresponds to Alice.)
-    
-    <br /><br />
-    
-    <b>Medical Record Identifier:</b>
-    <br />
-    <input type="text" value="567890" size="10" />
-    <br />
-    (Demo note: This value corresponds to Alice's blood test results.)
+    (Demo note: Bob probably copy-pasted this URL from an email notification. Perhaps Alice emailed it to him. Note that he is accessing the Big Hospital server, the value 123456 corresponds to Alice, and the value 567890 corresponds to her blood test results.)
     
     <br /><br />
     """
@@ -874,7 +860,7 @@ def step15(request):
     
     page_content = """
     <p>
-        Lorem ipsum.
+        <b>Major note:</b> From this step onward, all the steps are purely automatic. They are all done by computers with no human interaction. You can click through to read about what the computers do.
     </p>
     """
     

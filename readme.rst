@@ -3,6 +3,10 @@ HIE of One Demo for Future Commerce (HFCD)
 
 This is a single Django project that simulates three servers that communicate with one another to share medical records.
 
+See it in action here:
+
+`http://hieofonedemo.info/`_
+
 
 Requirements
 ------------
