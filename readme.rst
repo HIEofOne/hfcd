@@ -5,7 +5,7 @@ This is a single Django project that simulates three servers that communicate wi
 
 See it in action here:
 
-`http://hieofonedemo.info/`_
+http://hieofonedemo.info/
 
 
 Requirements
