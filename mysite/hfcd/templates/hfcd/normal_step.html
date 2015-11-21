@@ -17,6 +17,16 @@
 
 {{ page_content|safe }}
 
+{% if next_step %}
+    <a href="{% url next_step %}" class="big_button_link">
+        <div class="big_button">
+            Next
+        </div>
+    </a>
+    
+    <div class="clearfix">.</div>
+{% endif %}
+
 </div> <!-- div.indent -->
 
 {% endblock content %}
