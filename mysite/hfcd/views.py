@@ -173,6 +173,26 @@ def the_story(request):
     })
 
 
+def definitions(request):
+    """This page has helpful definitions"""
+    
+    page_data = HelpPageData(None)
+    page_title = "Helpful Definitions"
+    
+    terms = [
+        ('Alice', "Alice is the patient."),
+        ('Foo Bar', """This is a very very very long definition that wil rw ldkj lkj lkj lkj lkj lkj lkj lkj lkjliweijlkj lkj lekjwlrkejl kjwe lkjrw elkjr wlekjr wlekjr lwkejrlwkej rlkwje rlkwje rlkwejr lwkejr lkwejr lwkejr lwkejr wlekjr wlekjr wlekjr wlekjr welkrj welkjr wlekrj welkrj welkrj welkrj welkrj welkrj welkrj welkjrwlekjr"""),
+        ('Baz', "Foo"),
+    ]
+    
+    return render(request, 'hfcd/definitions.html', {
+        'user': request.user,
+        'page_title': page_title,
+        'page_data': page_data,
+        'terms': terms,
+    })
+
+
 def step01(request):
     """This is the first step of the Demo Story"""
     

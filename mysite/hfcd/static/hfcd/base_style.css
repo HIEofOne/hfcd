@@ -301,21 +301,16 @@ div.tree_depth_5 {
 }
 
 
-/* Toposorted Lists */
+/* Definition List */
 
-div.topo_list_one_sub_list {
-    margin: 5px;
-    border: 1px solid black;
-    padding: 10px 10px 5px 10px;
+div.define_one_term {
+    margin-bottom: 15px;
+    margin-left: 25px;
 }
 
-div.topo_list_sub_list_header {
+div.definition_term {
     font-weight: bold;
-    margin-bottom: 5px;
-}
-
-div.topo_list_one_task {
-    margin: 5px;
-    border: 1px solid #888888;
-    padding: 5px;
+    float: left;
+    padding-right: 10px;
+    margin-left: -25px;
 }
